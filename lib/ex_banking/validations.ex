@@ -16,8 +16,8 @@ defmodule ExBanking.Validations do
   def validate_user(_), do: {:error, :wrong_arguments}
 
   @spec validate_currency_amount(amount :: number()) :: {:ok, number()} | error_tuple
-  def validate_currency_amount(amount) when is_float(amount) and amount >= 0,
-    do: {:ok, Float.round(amount, 2)}
+  def validate_currency_amount(amount) when is_number(amount) and amount >= 0,
+    do: {:ok, Float.round(amount / 1, 2)}
 
   def validate_currency_amount(_), do: @error_tuple
 

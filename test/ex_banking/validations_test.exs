@@ -24,9 +24,9 @@ defmodule ExBanking.ValidationsTest do
     assert Validations.validate_currency_amount(1.1) == {:ok, 1.10}
     assert Validations.validate_currency_amount(1.25334534534) == {:ok, 1.25}
     assert Validations.validate_currency_amount(9_993_847.8133453458548934) == {:ok, 9_993_847.81}
+    assert Validations.validate_currency_amount(0) == {:ok, 0.0}
+    assert Validations.validate_currency_amount(1) == {:ok, 1.0}
 
-    assert Validations.validate_currency_amount(0) == @error_tuple
-    assert Validations.validate_currency_amount(1) == @error_tuple
     assert Validations.validate_currency_amount(-0.1) == @error_tuple
     assert Validations.validate_currency_amount("") == @error_tuple
     assert Validations.validate_currency_amount(nil) == @error_tuple
